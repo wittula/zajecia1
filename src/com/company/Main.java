@@ -34,8 +34,8 @@ public class Main {
         chicken.takeForAWalk();
         System.out.println("Obecna waga: "+ chicken.weight);
 
-        chicken.takeForAWalk();
-        chicken.feed();
+        // chicken.takeForAWalk();
+        // chicken.feed();
 
         // Zadanie 2
         Car passat = new Car("Passat B5", "Volkswagen");
@@ -50,5 +50,11 @@ public class Main {
         pato.car = passat;
 
         System.out.println("Auto Łukasza: " + pato.car.producer + " " + pato.car.model);
+
+        pato.setSalary(500.0);
+        pato.getSalary();
+
+        pato.setSalary(1000.0);
+        pato.getSalary();
     }
 }
