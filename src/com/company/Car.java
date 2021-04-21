@@ -13,6 +13,4 @@ public class Car {
         this.model = model;
         this.producer = producer;
     }
-
-
 }
