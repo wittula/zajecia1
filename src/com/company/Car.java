@@ -8,6 +8,7 @@ public class Car {
     String color;
     String fuelType;
     Double engineVolume;
+    Double value;
 
     public Car(String model, String producer) {
         this.model = model;

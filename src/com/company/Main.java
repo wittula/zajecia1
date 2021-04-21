@@ -44,17 +44,19 @@ public class Main {
         passat.color = "silver";
         passat.fuelType = "diesel";
         passat.engineVolume = 1.9;
+        passat.value = 3500.0;
 
         System.out.println("Auto: " + passat.producer + " " + passat.model);
-
-        pato.car = passat;
-
-        System.out.println("Auto Łukasza: " + pato.car.producer + " " + pato.car.model);
 
         pato.setSalary(500.0);
         pato.getSalary();
 
         pato.setSalary(1000.0);
         pato.getSalary();
+
+        //pato.setSalary(5.0);
+
+        pato.setCar(passat);
+        //pato.getCar();
     }
 }
