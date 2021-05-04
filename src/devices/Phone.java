@@ -1,4 +1,4 @@
-package com.company;
+package devices;
 
 public class Phone {
     final String producer;
@@ -11,5 +11,9 @@ public class Phone {
         this.model = model;
         this.screenSize = screenSize;
         this.operatingSystem = operatingSystem;
+    }
+
+    public String toString() {
+        return producer+" "+model+" "+screenSize+" "+operatingSystem;
     }
 }

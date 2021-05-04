@@ -8,6 +8,10 @@ public class Animal {
     String name;
     File pic;
 
+    public String toString() {
+        return species+" "+weight+" "+name+" "+pic;
+    }
+
     void feed() {
         try {
             if (this.weight <= 0.0) {

@@ -1,5 +1,8 @@
 package com.company;
 
+import devices.Car;
+import devices.Phone;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,6 +13,10 @@ public class Human {
     Phone mobilePhone;
     private Car car;
     private Double salary;
+
+    public String toString() {
+        return firstName+" "+lastName+" "+pet+" "+mobilePhone+" "+car+" "+salary;
+    }
 
     public Double getSalary(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
