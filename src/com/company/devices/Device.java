@@ -1,4 +1,4 @@
-package devices;
+package com.company.devices;
 
 public abstract class Device {
     final String producer;

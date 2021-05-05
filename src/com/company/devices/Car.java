@@ -1,6 +1,9 @@
-package devices;
+package com.company.devices;
 
-public class Car extends Device {
+import com.company.Human;
+import com.company.Salable;
+
+public class Car extends Device implements Salable {
     public final int id;
     public Double mileage;
     public int horsepower;
@@ -48,5 +51,22 @@ public class Car extends Device {
     @Override
     public int hashCode() {
         return id;
+    }
+
+    @Override
+    public void sell(Human seller, Human buyer, Double price) {
+        if (seller.getCar() != this) {
+            System.out.println("Nie możesz sprzedawać kradzionych samochodów");
+        } else if (buyer.cash < price) {
+            System.out.println("Kupujący nie ma tylu pieniędzy");
+        } else if (seller == buyer) {
+            System.out.println("Nie możesz sprzedać samochodu sam sobie!");
+        } else {
+            buyer.cash -= price;
+            seller.cash += price;
+            buyer.setCar(seller.getCar());
+            seller.takeCar();
+            System.out.println("Udało się sprzedać samochód za " + price);
+        }
     }
 }

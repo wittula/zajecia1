@@ -2,7 +2,7 @@ package com.company;
 
 import java.io.File;
 
-public class Animal {
+public class Animal implements Salable {
     String species;
     Double weight;
     String name;
@@ -43,6 +43,23 @@ public class Animal {
 
         } catch (Exception walkEx) {
             System.err.println(walkEx);
+        }
+    }
+
+    @Override
+    public void sell(Human seller, Human buyer, Double price) {
+        if (seller.pet != this) {
+            System.out.println("Nie możesz sprzedawać cudzych zwierząt!");
+        } else if (buyer.cash < price) {
+            System.out.println("Kupujący nie ma tylu pieniędzy");
+        } else if (seller == buyer) {
+            System.out.println("Nie możesz sprzedać zwierzęcia sam sobie!");
+        } else {
+            buyer.cash -= price;
+            seller.cash += price;
+            buyer.pet = seller.pet;
+            seller.pet = null;
+            System.out.println("Udało się sprzedać zwierzaka za " + price);
         }
     }
 }

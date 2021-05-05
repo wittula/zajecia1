@@ -1,18 +1,19 @@
 package com.company;
 
-import devices.Car;
-import devices.Phone;
+import com.company.devices.Car;
+import com.company.devices.Phone;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Human {
+public class Human implements Salable{
     String firstName;
     String lastName;
     Animal pet;
-    Phone mobilePhone;
+    public Phone mobilePhone;
     private Car car;
     private Double salary;
+    public Double cash;
 
     public String toString() {
         return firstName+" "+lastName+" "+pet+" "+mobilePhone+" "+car+" "+salary;
@@ -49,6 +50,7 @@ public class Human {
     }
 
     public void setCar(Car car) {
+
         if (this.salary > car.value) {
             System.out.println("Udało się kupić za gotówkę.");
             this.car = car;
@@ -62,5 +64,14 @@ public class Human {
         }
 
         System.out.println("Zapisz się na studia, znajdź nową robotę albo idź po podwyżkę.");
+    }
+
+    public void takeCar() {
+        this.car = null;
+    }
+
+    @Override
+    public void sell(Human seller, Human buyer, Double price) {
+        System.out.println("POLICJA! HANDEL LUDŹMI JEST NIELEGALNY!");
     }
 }
