@@ -1,20 +1,20 @@
 package com.company;
 
+import com.company.creatures.Animal;
+import com.company.creatures.FarmAnimal;
+import com.company.creatures.Human;
+import com.company.creatures.Pet;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
 public class Main {
 
     public static void main(String[] args) {
-        Animal chicken = new Animal();
-        chicken.name = "Koko";
-        chicken.species = "Patochicken";
-        chicken.weight = 2.3;
+        Pet dog = new Pet("pitbull", 22.5, "Zwijka", null);
+        FarmAnimal pig = new FarmAnimal("arkus gdynius", 43.5, "Świnka", null);
 
-        Human pato = new Human();
-        pato.firstName = "Łukasz";
-        pato.lastName = "Sztando";
-        pato.pet = chicken;
+        Human pato = new Human("Łukasz", "Sztando");
+        pato.pet = dog;
         pato.setSalary(5000.0);
 
         Car passat = new Car("Volkswagen","Passat B5", 2002, 1);
@@ -26,44 +26,19 @@ public class Main {
         passat.value = 3500.0;
 
         pato.setCar(passat);
-        //pato.getCar();
-
-        Car passat2 = new Car("Volkswagen","Passat B5", 2002, 1);
-        passat2.mileage = 125000.0;
-        passat2.horsepower = 105;
-        passat2.color = "silver";
-        passat2.fuelType = "diesel";
-        passat2.engineVolume = 1.9;
-        passat2.value = 3500.0;
 
         Phone phone = new Phone("Apple", "iPhone 7", 2016, 4.7, "iOS");
 
-        phone.turnOn();
-        passat.turnOn();
+        dog.feed();
+        pig.feed();
 
-        pato.mobilePhone = phone;
-        pato.cash = 40.0;
+        dog.feed(1.3);
+        pig.feed(7.5);
 
-        Human stepBro = new Human();
-        stepBro.cash = 1000.0;
+        dog.takeForAWalk();
 
-        phone.sell(pato, pato, 500.0);
-        phone.sell(stepBro, pato, 500.0);
-        phone.sell(pato, stepBro, 5000.0);
-        phone.sell(pato, stepBro, 500.0);
+        pig.beEaten();
+        pig.beEaten();
 
-        System.out.println(pato.mobilePhone);
-        System.out.println(stepBro.mobilePhone);
-
-        Human slave = new Human();
-        slave.sell(pato, stepBro, 100.0);
-
-        chicken.sell(pato, stepBro, 400.0);
-        System.out.println(pato.pet);
-        System.out.println(stepBro.pet);
-
-        passat.sell(pato, stepBro, 2300.0);
-        System.out.println(pato.getCar());
-        System.out.println(stepBro.getCar());
     }
 }

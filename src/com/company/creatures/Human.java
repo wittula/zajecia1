@@ -1,19 +1,25 @@
-package com.company;
+package com.company.creatures;
 
+import com.company.Salable;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Human implements Salable{
-    String firstName;
-    String lastName;
-    Animal pet;
+public class Human implements Salable {
+    public final String firstName;
+    public final String lastName;
+    public Pet pet;
     public Phone mobilePhone;
     private Car car;
     private Double salary;
     public Double cash;
+
+    public Human(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public String toString() {
         return firstName+" "+lastName+" "+pet+" "+mobilePhone+" "+car+" "+salary;
