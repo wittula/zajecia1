@@ -43,7 +43,7 @@ public class Main {
         // chicken.feed();
 
         // Zadanie 2
-        Car passat = new Car(1, "Passat B5", "Volkswagen");
+        Car passat = new Car("Volkswagen","Passat B5", 2002, 1);
         passat.mileage = 125000.0;
         passat.horsepower = 105;
         passat.color = "silver";
@@ -51,7 +51,7 @@ public class Main {
         passat.engineVolume = 1.9;
         passat.value = 3500.0;
 
-        System.out.println("Auto: " + passat.producer + " " + passat.model);
+        // System.out.println("Auto: " + passat.producer + " " + passat.model);
 
         pato.setSalary(500.0);
         pato.getSalary();
@@ -64,7 +64,7 @@ public class Main {
         pato.setCar(passat);
         //pato.getCar();
 
-        Car passat2 = new Car(1, "Passat B5", "Volkswagen");
+        Car passat2 = new Car("Volkswagen","Passat B5", 2002, 1);
         passat2.mileage = 125000.0;
         passat2.horsepower = 105;
         passat2.color = "silver";
@@ -79,11 +79,14 @@ public class Main {
         System.out.println(passat); // com.company.Car@1 po override hashcode, ale przed override toString
         System.out.println(passat2); // przed override sam hashcode był inny, teraz ma po prostu id
 
-        Phone phone = new Phone("Apple", "iPhone 7", 4.7, "iOS");
+        Phone phone = new Phone("Apple", "iPhone 7", 2016, 4.7, "iOS");
 
         System.out.println("Human: " + pato); // Human
         System.out.println("Car: " + passat); // Car
         System.out.println("Animal: " + chicken); // Animal
         System.out.println("Phone: " + phone); // Phone
+
+        phone.turnOn();
+        passat.turnOn();
     }
 }

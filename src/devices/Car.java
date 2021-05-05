@@ -1,9 +1,7 @@
 package devices;
 
-public class Car {
+public class Car extends Device {
     public final int id;
-    public final String producer;
-    public final String model;
     public Double mileage;
     public int horsepower;
     public String color;
@@ -11,14 +9,13 @@ public class Car {
     public Double engineVolume;
     public Double value;
 
-    public Car(int id, String model, String producer) {
+    public Car(String producer, String model, int yearOfProduction, int id) {
+        super(producer, model, yearOfProduction);
         this.id = id;
-        this.model = model;
-        this.producer = producer;
     }
 
     public String toString() {
-        return id+" "+producer+" "+model+" "+mileage+ " " +
+        return id+" "+producer+" "+model+" "+yearOfProduction+" "+mileage+ " " +
                 horsepower+" "+color+" "+fuelType+" "+
                 engineVolume+" "+value;
     }
