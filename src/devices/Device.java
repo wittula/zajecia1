@@ -15,7 +15,5 @@ public abstract class Device {
         return producer + " " + model + " " + yearOfProduction;
     }
 
-    public void turnOn() {
-        System.out.println("Urządzenie " + producer + " " + model + " włącza się.");
-    }
+    abstract public void turnOn();
 }

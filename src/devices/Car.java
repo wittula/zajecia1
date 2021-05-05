@@ -21,6 +21,11 @@ public class Car extends Device {
     }
 
     @Override
+    public void turnOn() {
+        System.out.println("[SAMOCHÓD] Urządzenie " + producer + " " + model + " włącza się.");
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
