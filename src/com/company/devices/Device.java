@@ -11,9 +11,9 @@ public abstract class Device {
         this.yearOfProduction = yearOfProduction;
     }
 
-    public String toString() {
-        return producer + " " + model + " " + yearOfProduction;
-    }
+//    public String toString() {
+//        return producer + " " + model + " " + yearOfProduction;
+//    }
 
     abstract public void turnOn();
 }

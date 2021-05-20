@@ -3,8 +3,7 @@ package com.company.devices;
 import com.company.creatures.Human;
 import com.company.Salable;
 
-public class Car extends Device implements Salable {
-    public final int id;
+public abstract class Car extends Device implements Salable {
     public Double mileage;
     public int horsepower;
     public String color;
@@ -12,45 +11,19 @@ public class Car extends Device implements Salable {
     public Double engineVolume;
     public Double value;
 
-    public Car(String producer, String model, int yearOfProduction, int id) {
+    public Car(String producer, String model, int yearOfProduction) {
         super(producer, model, yearOfProduction);
-        this.id = id;
     }
 
-    public String toString() {
-        return id+" "+producer+" "+model+" "+yearOfProduction+" "+mileage+ " " +
-                horsepower+" "+color+" "+fuelType+" "+
-                engineVolume+" "+value;
-    }
+//    public String toString() {
+//        return producer+" "+model+" "+yearOfProduction+" "+mileage+ " " +
+//                horsepower+" "+color+" "+fuelType+" "+
+//                engineVolume+" "+value;
+//    }
 
     @Override
     public void turnOn() {
         System.out.println("[SAMOCHÓD] Urządzenie " + producer + " " + model + " włącza się.");
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Car car = (Car) o;
-        return id == car.id &&
-                model.equals(car.model) &&
-                mileage.equals(car.mileage) &&
-                horsepower == car.horsepower &&
-                color.equals(car.color) &&
-                fuelType.equals(car.fuelType) &&
-                engineVolume.equals(car.engineVolume) &&
-                value.equals(car.value) &&
-                producer.equals(car.producer);
-    }
-
-    @Override
-    public int hashCode() {
-        return id;
     }
 
     @Override
@@ -69,4 +42,6 @@ public class Car extends Device implements Salable {
             System.out.println("Udało się sprzedać samochód za " + price);
         }
     }
+
+    public abstract void refuel();
 }

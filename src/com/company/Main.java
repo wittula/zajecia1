@@ -4,8 +4,10 @@ import com.company.creatures.Animal;
 import com.company.creatures.FarmAnimal;
 import com.company.creatures.Human;
 import com.company.creatures.Pet;
-import com.company.devices.Car;
-import com.company.devices.Phone;
+import com.company.devices.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -17,7 +19,7 @@ public class Main {
         pato.pet = dog;
         pato.setSalary(5000.0);
 
-        Car passat = new Car("Volkswagen","Passat B5", 2002, 1);
+        Car passat = new Diesel("Volkswagen","Passat B5", 2002);
         passat.mileage = 125000.0;
         passat.horsepower = 105;
         passat.color = "silver";
@@ -40,5 +42,23 @@ public class Main {
         pig.beEaten();
         pig.beEaten();
 
+        phone.installAnApp("Tinder");
+        phone.installAnApp("Tinder", "1.4.2");
+        phone.installAnApp("Tinder", "1.4.4", "tinder.com");
+
+        List<String> appNames = new ArrayList<>();
+        appNames.add("Yanosik");
+        appNames.add("Steam");
+        appNames.add("Messenger");
+
+        phone.installAnApp(appNames);
+
+        passat.refuel();
+
+        Car astra = new LPG("Opel", "Astra Classic", 1999);
+        astra.refuel();
+
+        Car tesla = new Electric("Tesla", "S", 2021);
+        tesla.refuel();
     }
 }
