@@ -59,18 +59,6 @@ public class Human implements Salable {
         this.salary = salary;
     }
 
-    public Car getCar(int slotID){
-        return this.garage[slotID];
-    }
-
-    public void setCar(Car car, int slotID) {
-        this.garage[slotID] = car;
-    }
-
-    public void takeCar(int slotID) {
-        this.garage[slotID] = null;
-    }
-    
     public Double getGarageValue() {
         Double garageValue = 0.0;
 
@@ -113,6 +101,9 @@ public class Human implements Salable {
         for (int i = 0; i < garage.length; i++){
             if (this.garage[i] == null){
                 this.garage[i] = newCar;
+                newCar.owners.add(this);
+
+                return; // trzeba zakończyć, bo w przypadku pustego garażu wpisywało to samo auto na 3 miejsca.
             }
         }
     }

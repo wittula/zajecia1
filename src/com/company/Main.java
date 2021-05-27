@@ -27,8 +27,6 @@ public class Main {
         passat.fuelType = "diesel";
         passat.engineVolume = 1.9;
 
-        pato.setCar(passat, 0);
-
         Phone phone = new Phone("Apple",
                 "iPhone 7",
                 2016,
@@ -69,14 +67,19 @@ public class Main {
         Human najman = new Human("Marcin", "Najman", 3);
         najman.setSalary(100000.0);
         najman.cash = 19000.0;
-        najman.setCar(passat, 0);
-        najman.setCar(astra, 1);
-        najman.setCar(tesla, 2);
+        najman.addCar(passat);
 
-        System.out.println(najman.getGarageValue());
-        System.out.println(najman.sortGarage());
+        System.out.println("Passat ile transakcji: " + passat.howManyTransactions());
+        System.out.println("Astra ile transakcji: " + astra.howManyTransactions());
+        najman.addCar(astra);
+        System.out.println("Astra ile transakcji: " + astra.howManyTransactions());
+        System.out.println("Astra rozmiar wlascicieli: " + astra.owners.size());
 
         astra.sell(najman, pato, 1900.0);
-        System.out.println(najman);
+        System.out.println("Astra ile transakcji: " + astra.howManyTransactions());
+        System.out.println("Astra czy najman byl wlascicielem: " + astra.wasEverOwner(najman));
+        System.out.println("Astra czy najman sprzedal ją pato: " + astra.isSoldByTo(najman, pato));
+        System.out.println("Astra czy pato sprzedał ją najmanowi: " + astra.isSoldByTo(pato, najman));
+
     }
 }
