@@ -11,25 +11,30 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Pet dog = new Pet("pitbull", 22.5, "Zwijka", null);
         FarmAnimal pig = new FarmAnimal("arkus gdynius", 43.5, "Świnka", null);
 
         Human pato = new Human("Łukasz", "Sztando");
         pato.pet = dog;
         pato.setSalary(5000.0);
+        pato.cash = 6500.0;
 
-        Car passat = new Diesel("Volkswagen","Passat B5", 2002);
+        Car passat = new Diesel("Volkswagen","Passat B5", 2002, 3500.0);
         passat.mileage = 125000.0;
         passat.horsepower = 105;
         passat.color = "silver";
         passat.fuelType = "diesel";
         passat.engineVolume = 1.9;
-        passat.value = 3500.0;
 
-        pato.setCar(passat);
+        pato.setCar(passat, 0);
 
-        Phone phone = new Phone("Apple", "iPhone 7", 2016, 4.7, "iOS");
+        Phone phone = new Phone("Apple",
+                "iPhone 7",
+                2016,
+                1200.0,
+                4.7,
+                "iOS");
 
         dog.feed();
         pig.feed();
@@ -55,10 +60,23 @@ public class Main {
 
         passat.refuel();
 
-        Car astra = new LPG("Opel", "Astra Classic", 1999);
+        Car astra = new LPG("Opel", "Astra Classic", 1999, 2000.0);
         astra.refuel();
 
-        Car tesla = new Electric("Tesla", "S", 2021);
+        Car tesla = new Electric("Tesla", "S", 2021, 30000.0);
         tesla.refuel();
+
+        Human najman = new Human("Marcin", "Najman", 3);
+        najman.setSalary(100000.0);
+        najman.cash = 19000.0;
+        najman.setCar(passat, 0);
+        najman.setCar(astra, 1);
+        najman.setCar(tesla, 2);
+
+        System.out.println(najman.getGarageValue());
+        System.out.println(najman.sortGarage());
+
+        astra.sell(najman, pato, 1900.0);
+        System.out.println(najman);
     }
 }

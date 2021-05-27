@@ -5,6 +5,7 @@ import com.company.Salable;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Phone extends Device implements Salable {
@@ -15,15 +16,22 @@ public class Phone extends Device implements Salable {
     static final String DEFAULT_SERVER_PROTOCOL = "https";
     static final String DEFAULT_VERSION_NAME = "latest";
 
-    public Phone(String producer, String model, int yearOfProduction, Double screenSize, String operatingSystem) {
-        super(producer, model, yearOfProduction);
+    public Phone(String producer, String model, int yearOfProduction, Double value, Double screenSize, String operatingSystem) {
+        super(producer, model, yearOfProduction, value);
 
         this.screenSize = screenSize;
         this.operatingSystem = operatingSystem;
     }
 
+    @Override
     public String toString() {
-        return producer+" "+model+" "+screenSize+" "+operatingSystem+" "+yearOfProduction;
+        return "Phone {" +
+                "producer='" + producer + '\'' +
+                ", model='" + model + '\'' +
+                ", yearOfProduction=" + yearOfProduction +
+                ", screenSize=" + screenSize +
+                ", operatingSystem='" + operatingSystem + '\'' +
+                '}';
     }
 
     @Override

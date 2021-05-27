@@ -17,10 +17,15 @@ public abstract class Animal implements Salable, Feedable {
         this.pic = pic;
     }
 
+    @Override
     public String toString() {
-        return species+" "+weight+" "+name+" "+pic;
+        return "Animal{" +
+                "species='" + species + '\'' +
+                ", weight=" + weight +
+                ", name='" + name + '\'' +
+                ", pic=" + pic +
+                '}';
     }
-
     abstract public void feed();
     abstract public void takeForAWalk();
 

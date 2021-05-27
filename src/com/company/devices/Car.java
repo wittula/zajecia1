@@ -9,17 +9,23 @@ public abstract class Car extends Device implements Salable {
     public String color;
     public String fuelType;
     public Double engineVolume;
-    public Double value;
 
-    public Car(String producer, String model, int yearOfProduction) {
-        super(producer, model, yearOfProduction);
+    public Car(String producer, String model, int yearOfProduction, Double value) {
+        super(producer, model, yearOfProduction, value);
     }
 
-//    public String toString() {
-//        return producer+" "+model+" "+yearOfProduction+" "+mileage+ " " +
-//                horsepower+" "+color+" "+fuelType+" "+
-//                engineVolume+" "+value;
-//    }
+    public String toString() {
+        return "\nCar {\n" +
+                "   producer = '" + producer + '\'' +
+                ",\n   model = '" + model + '\'' +
+                ",\n   yearOfProduction = " + yearOfProduction +
+                ",\n   horsepower = " + horsepower +
+                ",\n   fuelType = " + fuelType +
+                ",\n   engineVolume = " + engineVolume +
+                ",\n   color = " + color +
+                ",\n   value = " + value +
+                "\n}\n";
+    }
 
     @Override
     public void turnOn() {
@@ -27,20 +33,25 @@ public abstract class Car extends Device implements Salable {
     }
 
     @Override
-    public void sell(Human seller, Human buyer, Double price) {
-        if (seller.getCar() != this) {
-            System.out.println("Nie możesz sprzedawać kradzionych samochodów");
-        } else if (buyer.cash < price) {
-            System.out.println("Kupujący nie ma tylu pieniędzy");
-        } else if (seller == buyer) {
-            System.out.println("Nie możesz sprzedać samochodu sam sobie!");
-        } else {
-            buyer.cash -= price;
-            seller.cash += price;
-            buyer.setCar(seller.getCar());
-            seller.takeCar();
-            System.out.println("Udało się sprzedać samochód za " + price);
+    public void sell(Human seller, Human buyer, Double price) throws Exception {
+        if(!seller.hasCar(this)) {
+            throw new Exception("Sprzedający nie posiada tego samochodu!");
         }
+
+        if(!buyer.hasFreeSpace()){
+            throw new Exception("Kupujący nie ma miejsca w swoim garażu!");
+        }
+
+        if (buyer.cash < price){
+            throw new Exception("Kupujący nie ma tylu pieniędzy!");
+        }
+        seller.removeCar(this);
+        buyer.addCar(this);
+
+        seller.cash += price;
+        buyer.cash -= price;
+
+        System.out.println("Sprzedano!");
     }
 
     public abstract void refuel();

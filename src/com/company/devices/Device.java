@@ -3,17 +3,24 @@ package com.company.devices;
 public abstract class Device {
     final String producer;
     final String model;
-    final int yearOfProduction;
+    public final int yearOfProduction;
+    public Double value;
 
-    public Device(String producer, String model, int yearOfProduction) {
+    public Device(String producer, String model, int yearOfProduction, Double value) {
         this.producer = producer;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
+        this.value = value;
     }
 
-//    public String toString() {
-//        return producer + " " + model + " " + yearOfProduction;
-//    }
+    @Override
+    public String toString() {
+        return "Device{" +
+                "producer='" + producer + '\'' +
+                ", model='" + model + '\'' +
+                ", yearOfProduction=" + yearOfProduction +
+                '}';
+    }
 
     abstract public void turnOn();
 }

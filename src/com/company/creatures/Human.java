@@ -2,27 +2,35 @@ package com.company.creatures;
 
 import com.company.Salable;
 import com.company.devices.Car;
+import com.company.devices.Device;
 import com.company.devices.Phone;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Human implements Salable {
     public final String firstName;
     public final String lastName;
     public Pet pet;
     public Phone mobilePhone;
-    private Car car;
+    public Car[] garage;
     private Double salary;
     public Double cash;
 
     public Human(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.garage = new Car[3];
     }
 
-    public String toString() {
-        return firstName+" "+lastName+" "+pet+" "+mobilePhone+" "+car+" "+salary;
+    public Human(String firstName, String lastName, int garageCapacity) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.garage = new Car[garageCapacity];
     }
 
     public Double getSalary(){
@@ -51,29 +59,75 @@ public class Human implements Salable {
         this.salary = salary;
     }
 
-    public Car getCar(){
-        return this.car;
+    public Car getCar(int slotID){
+        return this.garage[slotID];
     }
 
-    public void setCar(Car car) {
-
-        if (this.salary > car.value) {
-            System.out.println("Udało się kupić za gotówkę.");
-            this.car = car;
-            return;
-        }
-
-        if (this.salary > (car.value/12.0)) {
-            System.out.println("Udało się kupić na kredyt.");
-            this.car = car;
-            return;
-        }
-
-        System.out.println("Zapisz się na studia, znajdź nową robotę albo idź po podwyżkę.");
+    public void setCar(Car car, int slotID) {
+        this.garage[slotID] = car;
     }
 
-    public void takeCar() {
-        this.car = null;
+    public void takeCar(int slotID) {
+        this.garage[slotID] = null;
+    }
+    
+    public Double getGarageValue() {
+        Double garageValue = 0.0;
+
+        for (Device vehicle : this.garage) {
+            garageValue += vehicle.value;
+        }
+
+        return garageValue;
+    }
+
+    public List<Car> sortGarage() {
+        return Arrays.stream(garage)
+                .sorted(Comparator.comparing(car -> car.yearOfProduction))
+                .collect(Collectors.toList());
+    }
+
+    public boolean hasCar(Car newCar){
+        for (Car car: garage) {
+            if(car == newCar) return true;
+        }
+        return false;
+    }
+
+    public boolean hasFreeSpace(){
+        for (Car car: garage) {
+            if(car == null) return true;
+        }
+        return false;
+    }
+
+    public void removeCar(Car carToRemove){
+        for (int i = 0; i < garage.length; i++){
+            if (this.garage[i] == carToRemove){
+                this.garage[i] = null;
+            }
+        }
+    }
+
+    public void addCar(Car newCar){
+        for (int i = 0; i < garage.length; i++){
+            if (this.garage[i] == null){
+                this.garage[i] = newCar;
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "\nHuman {\n" +
+                "   firstName = '" + firstName + '\'' +
+                ",\n   lastName = '" + lastName + '\'' +
+                ",\n   pet = " + pet +
+                ",\n   phone = " + mobilePhone +
+                ",\n   garage = " + Arrays.toString(garage) +
+                ",\n   salary = " + salary +
+                ",\n   cash = " + cash +
+                "\n}\n";
     }
 
     @Override
