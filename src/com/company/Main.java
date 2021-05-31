@@ -12,74 +12,54 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Pet dog = new Pet("pitbull", 22.5, "Zwijka", null);
-        FarmAnimal pig = new FarmAnimal("arkus gdynius", 43.5, "Świnka", null);
-
         Human pato = new Human("Łukasz", "Sztando");
-        pato.pet = dog;
-        pato.setSalary(5000.0);
         pato.cash = 6500.0;
 
-        Car passat = new Diesel("Volkswagen","Passat B5", 2002, 3500.0);
-        passat.mileage = 125000.0;
-        passat.horsepower = 105;
-        passat.color = "silver";
-        passat.fuelType = "diesel";
-        passat.engineVolume = 1.9;
+        Human poor = new Human("John", "Doe");
+        poor.cash = 10.0;
 
         Phone phone = new Phone("Apple",
                 "iPhone 7",
                 2016,
                 1200.0,
                 4.7,
-                "iOS");
+                "iOS"
+        );
 
-        dog.feed();
-        pig.feed();
+        Phone phone2 = new Phone("GooPhone", "7", 2017,
+                300.0, 5.0, "Android"
+        );
 
-        dog.feed(1.3);
-        pig.feed(7.5);
+        pato.mobilePhone = phone;
+        poor.mobilePhone = phone2;
 
-        dog.takeForAWalk();
+        Application messenger = new Application("Messenger", "13.2.1", 0.0);
+        Application photoshop = new Application("Photoshop", "7.3.0", 15.0);
+        Application netflix = new Application("Netflix", "4.2.1", 0.0);
+        Application beerpong = new Application("Beer Pong", "1.2.4", 5.0);
 
-        pig.beEaten();
-        pig.beEaten();
+        phone.installAnApp(pato, messenger);
+        phone.installAnApp(pato, beerpong);
+        phone.installAnApp(pato, netflix);
 
-        phone.installAnApp("Tinder");
-        phone.installAnApp("Tinder", "1.4.2");
-        phone.installAnApp("Tinder", "1.4.4", "tinder.com");
+        System.out.println(phone.hasApplication("Messenger"));
+        System.out.println(phone.hasApplication(messenger));
 
-        List<String> appNames = new ArrayList<>();
-        appNames.add("Yanosik");
-        appNames.add("Steam");
-        appNames.add("Messenger");
+        System.out.println(phone.hasApplication(photoshop));
+        System.out.println(phone.hasApplication("Photoshop"));
 
-        phone.installAnApp(appNames);
+        System.out.println("");
 
-        passat.refuel();
+        phone.showAllApplications();
+        phone.showAllFreeApplications();
 
-        Car astra = new LPG("Opel", "Astra Classic", 1999, 2000.0);
-        astra.refuel();
+        System.out.println("");
+        phone.sortApplicationsByName();
+        System.out.println("");
+        phone.sortApplicationsByPrice();
+        System.out.println("");
 
-        Car tesla = new Electric("Tesla", "S", 2021, 30000.0);
-        tesla.refuel();
-
-        Human najman = new Human("Marcin", "Najman", 3);
-        najman.setSalary(100000.0);
-        najman.cash = 19000.0;
-        najman.addCar(passat);
-
-        System.out.println("Passat ile transakcji: " + passat.howManyTransactions());
-        System.out.println("Astra ile transakcji: " + astra.howManyTransactions());
-        najman.addCar(astra);
-        System.out.println("Astra ile transakcji: " + astra.howManyTransactions());
-        System.out.println("Astra rozmiar wlascicieli: " + astra.owners.size());
-
-        astra.sell(najman, pato, 1900.0);
-        System.out.println("Astra ile transakcji: " + astra.howManyTransactions());
-        System.out.println("Astra czy najman byl wlascicielem: " + astra.wasEverOwner(najman));
-        System.out.println("Astra czy najman sprzedal ją pato: " + astra.isSoldByTo(najman, pato));
-        System.out.println("Astra czy pato sprzedał ją najmanowi: " + astra.isSoldByTo(pato, najman));
-
+        phone.installAnApp(poor, photoshop);
+        System.out.println(phone2.hasApplication(photoshop));
     }
 }
